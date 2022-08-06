@@ -14,16 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class SearchProduct
- */
-@WebServlet("/SearchProduct")
-public class SearchProduct extends HttpServlet {
+@WebServlet("/productdetailsservlet")
+public class ProductDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Connection connection;       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	Connection connection;
+
 	@Override
 	public void init() throws ServletException {
 		try {
@@ -41,11 +36,10 @@ public class SearchProduct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html");
-		int category_id = Integer.parseInt(req.getParameter("category_id"));
+		int productid = Integer.parseInt(req.getParameter("category_id"));
 
 		try (Statement statement = connection.createStatement();) {
-			String query = "(SELECT * FROM mydb.laptoplaptop;\r\n"
-					+ " where category_id=" + category_id + ")";
+			String query = "(select * from mydb.laptop where category_id=" + productid + ")";
 
 			ResultSet resultset = statement.executeQuery(query);
 			PrintWriter out = res.getWriter();
@@ -68,7 +62,8 @@ public class SearchProduct extends HttpServlet {
 				}
 				out.println("</table>");
 			}
-			out.println("<p><a href=\"homepage.html\">Return to Home-Page</a></p>");
+			out.println("<p><a href=\"index.html\">Return to Home-Page</a></p>");
+			out.println("<p><a href=\"home.html\">Return to Home-Page</a></p>");
 		}
 
 		catch (SQLException e) {
