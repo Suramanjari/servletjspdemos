@@ -48,22 +48,28 @@ public class ProductDetails extends HttpServlet {
 			} else {
 				
 				out.println("<table>");
+			    out.println("<table border=3>");
 				out.println("<tr>");
-				out.println("<th>category_id</th>");
-				out.println("<th>name</th>");
-				out.println("<th>price</th>");
+				out.println("<th><tr><td>category_id</td></tr></th>");
+				out.println("<th><tr><td>name</td></tr></th>");
+				out.println("<th><tr><td>price</td></tr></th>");
 				out.println("</tr>");
+
 				while (resultset.next()) {
 					out.println("<tr>");
-					out.println("<th>" + resultset.getString(1) + "</th>");
-					out.println("<th>" + resultset.getString(2) + "</th>");
-					out.println("<th>" + resultset.getString(3) + "</th>");
+					out.println("<table>");
+				    out.println("<table border=3>");
+					out.println("<th><tr><td>" + resultset.getString(1) + "</td></tr></th>");
+					out.println("<th><tr><td>" + resultset.getString(2) + "</td></tr></th>");
+					out.println("<th><tr><td>" + resultset.getString(3) + "</td></tr></th>");
+					out.println("</table>");
 					out.println("</tr>");
 				}
 				out.println("</table>");
+
 			}
-			out.println("<p><a href=\"index.html\">Return to Home-Page</a></p>");
 			out.println("<p><a href=\"home.html\">Return to Home-Page</a></p>");
+			out.println("<p><a href=\"index.html\">Return to ProductID</a></p>");
 		}
 
 		catch (SQLException e) {
